@@ -1,0 +1,44 @@
+Exercise 2: E-commerce Platform Search Function
+
+This program demonstrates search functionality for an e-commerce platform using Linear Search and Binary Search.
+
+Big O Notation:
+Big O notation is used to measure the performance of an algorithm. It tells how the time or space required by an algorithm increases when the input size increases.
+
+Search Cases:
+
+1. Best Case:
+   The product is found at the first position.
+   Time complexity is O(1).
+
+2. Average Case:
+   The product is found somewhere in the middle.
+   Linear Search takes O(n).
+   Binary Search takes O(log n).
+
+3. Worst Case:
+   The product is at the last position or not present.
+   Linear Search takes O(n).
+   Binary Search takes O(log n).
+
+Linear Search:
+Linear Search checks each product one by one.
+It works even if the products are not sorted.
+It is easy to implement but slower for large data.
+
+Binary Search:
+Binary Search works on a sorted array.
+It checks the middle element and removes half of the search area each time.
+It is faster than Linear Search for large data.
+
+Comparison:
+Linear Search:
+Best Case: O(1)
+Average Case: O(n)
+Worst Case: O(n)
+
+Binary Search:
+Best Case: O(1)
+Average Case: O(log n)
+Worst Case: O(log n)
+

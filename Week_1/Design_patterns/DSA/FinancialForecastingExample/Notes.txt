@@ -1,0 +1,55 @@
+Exercise 7: Financial Forecasting
+
+This program demonstrates financial forecasting using recursion.
+
+Recursion:
+Recursion means a method calls itself again and again until a stopping condition is reached.
+
+In this program, recursion is used to calculate future value based on:
+
+1. Current value
+2. Growth rate
+3. Number of years
+
+Formula Used:
+Future Value = Amount × (1 + Growth Rate)
+
+Example:
+Current Value = 10000
+Growth Rate = 10%
+Years = 5
+
+Working:
+Year 0: 10000
+Year 1: 11000
+Year 2: 12100
+Year 3: 13310
+Year 4: 14641
+Year 5: 16105.1
+
+Base Case:
+When years becomes 0, the method returns the amount.
+
+Recursive Case:
+The amount is increased by the growth rate, and years is reduced by 1.
+
+Time Complexity:
+The recursive method runs one time for each year.
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+Here, n is the number of years.
+
+Optimization:
+The recursive solution can be optimized by using a loop instead of recursion.
+
+Using a loop reduces extra memory usage.
+
+Optimized Complexity:
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Final Conclusion:
+Recursion makes the financial forecasting logic simple and easy to understand.
+But for large numbers of years, an iterative loop is better because it uses less memory.
