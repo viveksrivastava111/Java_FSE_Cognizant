@@ -1,0 +1,18 @@
+# Application Name
+spring.application.name=spring-learn
+
+
+# Server Port
+server.port=8090
+
+
+# Spring Framework Logging
+logging.level.org.springframework=info
+
+
+# Application Logging
+logging.level.com.cognizant.springlearn=debug
+
+
+# Console Log Pattern
+logging.pattern.console=%d{yyMMdd}|%d{HH:mm:ss.SSS}|%-20.20thread|%5p|%-25.25logger{25}|%25M|%m%n
