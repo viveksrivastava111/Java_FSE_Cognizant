@@ -1,0 +1,57 @@
+HOL-1: Introduction to React and SPA
+
+Define SPA and its benefits
+
+A Single-Page Application (SPA) is a web application that loads a single HTML page initially, then dynamically rewrites the content of that same page as the user interacts with it, rather than requesting and loading a brand-new HTML page from the server for every single navigation action.
+The core benefit is speed after the initial load: since the browser isn't re-downloading and re-rendering an entire new page for every click, transitions between views feel instant and fluid, much closer to how a native desktop or mobile application behaves than to a traditional website.
+SPAs reduce the amount of data transferred over the network for subsequent interactions — instead of re-sending the full page markup (headers, navigation, footers, everything) on every request, only the specific data that actually changed needs to be fetched, typically as lightweight JSON rather than full HTML documents.
+Because the page itself never fully reloads, SPAs can maintain application state more naturally across interactions — things like a shopping cart, a half-filled form, or a video that's currently playing don't get interrupted or reset the way they might if the browser had to reload the entire page from scratch.
+Real-world examples that most people are already familiar with include Gmail, Facebook, Twitter, and Google Maps — all of these feel fast and responsive specifically because they're built as SPAs, dynamically updating in place rather than triggering full page reloads for every action a user takes.
+
+Define React and identify its working
+
+React is a JavaScript library, created and maintained by Meta (formerly Facebook), specifically designed for building user interfaces — and in particular, it's extremely well-suited to building SPAs, though it can be used for parts of traditional multi-page sites too.
+At its core, React works by breaking a UI down into small, independent, reusable pieces called components — each component is responsible for rendering its own small piece of the overall interface, and components can be nested inside one another to build up increasingly complex UIs from simple building blocks.
+React maintains an internal, lightweight in-memory representation of the UI called the Virtual DOM. Whenever a component's data changes, React doesn't immediately touch the real browser DOM — it first updates this Virtual DOM representation.
+React then compares (or "diffs") the new Virtual DOM against the previous version, identifies exactly which parts actually changed, and calculates the minimal set of real DOM updates needed to bring the browser's actual page in sync with the new state.
+Only those specific, calculated changes are then applied to the real DOM — this selective-update approach is significantly faster than naively re-rendering an entire page section from scratch every time even a small piece of data changes, and it's the central mechanism that makes React-based applications feel fast and responsive.
+
+Identify the differences between SPA and MPA
+
+An SPA loads a single HTML page for the entire application lifetime and updates content dynamically in place; a Multi-Page Application (MPA) loads a completely new HTML page from the server every time the user navigates to a different section or route.
+SPAs tend to feel faster after the initial page load, since only data (not full pages) needs to be fetched for subsequent interactions; MPAs reload the full page every time, which introduces a brief delay and a visible "flash" on every navigation, even though the very first load of an MPA can sometimes be quicker since there's less JavaScript to download upfront.
+SPAs rely heavily on client-side rendering — the browser's JavaScript is responsible for building and updating the UI; MPAs more commonly rely on server-side rendering, where the server generates a complete, ready-to-display HTML page for each request.
+SPAs can be more challenging to optimize for search engines (SEO) out of the box, since content is often generated dynamically by JavaScript after the initial page load, which some search engine crawlers historically struggled to index properly; MPAs, being fundamentally built around distinct server-rendered pages, tend to be naturally more SEO-friendly by default.
+SPAs are generally better suited to highly interactive, app-like experiences (dashboards, social media feeds, email clients); MPAs remain a strong fit for large, content-heavy websites where SEO and simple, direct linkability to individual pages matter a great deal, such as blogs, news sites, and e-commerce catalogs.
+
+Explain Pros & Cons of Single-Page Application
+
+Pro: Once the initial page and its JavaScript have loaded, subsequent interactions feel fast and smooth, since the browser is only updating small parts of the existing page rather than reloading everything from scratch.
+Pro: SPAs can deliver a mobile-app-like feel with less dependency on constant round-trips to the server, since much of the UI logic and rendering happens directly in the browser rather than being recalculated server-side for every single interaction.
+Con: The initial load time can actually be slower than a traditional page, since the browser typically needs to download a larger JavaScript bundle upfront before anything meaningful can be shown to the user.
+Con: SEO can be genuinely difficult to get right without extra configuration or additional tooling (like server-side rendering frameworks built on top of React, e.g., Next.js), since search engines historically favored content that's readily available in the initial HTML response, before any JavaScript execution.
+Con: Because the URL doesn't naturally change with every view the way it does in a traditional MPA, SPAs require extra deliberate handling (typically via a client-side routing library) to make the browser's back/forward buttons and bookmarking behave the way users expect.
+
+Explain about React
+
+React was developed and is actively maintained by Meta (Facebook), alongside a very large, active open-source community that contributes to its ongoing evolution, documentation, and surrounding ecosystem of tools and libraries.
+It is deliberately described as a library, not a full framework — React specifically focuses on the "view" layer of an application (rendering UI based on data), and deliberately leaves other architectural decisions (routing, state management at a larger scale, data fetching patterns) to be handled by separate libraries that developers choose and integrate themselves.
+The component-based architecture at React's core encourages building UIs out of small, self-contained, reusable pieces — a button, a card, a navigation bar — each of which can be developed, tested, and reasoned about largely in isolation from the rest of the application.
+React introduced JSX, a syntax extension that allows writing HTML-like markup directly within JavaScript code, which makes describing UI structure considerably more intuitive and readable compared to constructing that same UI through many nested, manual function calls.
+Since its initial release, React has become one of the most widely adopted UI libraries in the industry, with an extensive ecosystem of supporting tools, official documentation, and third-party libraries (for routing, state management, testing, and more) that have grown up around it over the years.
+
+Define virtual DOM
+
+The Virtual DOM is a lightweight, in-memory JavaScript representation of what the actual browser DOM should currently look like — essentially a plain JavaScript object tree that mirrors the real DOM's structure, but is far cheaper and faster to create, update, and compare than manipulating the real DOM directly.
+Whenever a component's state or props change, React first creates a brand-new Virtual DOM tree reflecting what the UI should now look like, rather than immediately making any changes to the real, actual browser DOM.
+React then compares this newly-created Virtual DOM tree against the previous Virtual DOM tree it had stored from before the change — a process commonly referred to as "diffing" — to precisely determine exactly which specific parts of the UI have actually changed.
+Only the specific, identified differences are then applied to the real DOM, through a process called "reconciliation" — rather than tearing down and rebuilding entire sections of the real DOM from scratch, React makes surgical, targeted updates only where genuinely necessary.
+This approach is significantly faster overall than directly manipulating the real DOM for every single small change, because real DOM operations are comparatively expensive from a performance standpoint, while Virtual DOM operations (being plain JavaScript objects) are comparatively very cheap and fast — batching and minimizing real DOM touches is precisely what gives React applications their characteristic responsiveness.
+
+Explain Features of React
+
+Component-based architecture: UIs are built from small, independent, reusable components that each manage their own piece of the overall interface, and can be composed together to build increasingly complex applications from simple building blocks.
+JSX: a syntax extension that lets developers write markup that closely resembles HTML directly within their JavaScript files, making UI structure considerably easier to read, write, and reason about compared to deeply nested manual function calls.
+Virtual DOM: React's internal, lightweight in-memory representation of the UI, which enables it to calculate and apply only the minimal necessary real-DOM updates whenever the underlying data changes, rather than re-rendering entire sections from scratch.
+One-way (unidirectional) data binding: data in React flows in a single, predictable direction — from parent components down to child components via props — which makes it considerably easier to trace exactly where a particular piece of data originated from and to reason about how and why the UI changes over time.
+A large, mature ecosystem: extensive official documentation, a very large and active developer community, and a rich surrounding landscape of supporting tools (Create React App, React Router for navigation, Redux and Context API for larger-scale state management, and many others) that make React practical to use for projects ranging from small prototypes to large-scale production applications.

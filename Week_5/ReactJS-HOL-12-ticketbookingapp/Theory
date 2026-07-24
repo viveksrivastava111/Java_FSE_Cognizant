@@ -1,0 +1,33 @@
+HOL-12: Conditional Rendering (Part 1)
+
+Conditional rendering in React
+
+Refers to displaying different UI based on certain conditions, like login status
+Can be done using if statements, ternary operators, or logical && operators
+Lets one component render completely different output depending on props or state
+Central to building interactive apps that change based on user actions
+Used in this lab to switch between Guest and User views
+
+Element variables
+
+A variable that stores a piece of JSX, decided by some condition
+Makes render logic cleaner by separating the decision from the actual JSX output
+The variable is later inserted into the JSX using { }
+Common pattern: use if/else to assign JSX to a variable, then render that variable
+Was used in this lab to decide between showing a Login or Logout button
+
+Preventing components from rendering
+
+A component can be prevented from rendering by returning null from its render logic
+Useful when a component should conditionally not appear at all
+Different from just hiding with CSS; the component doesn't render into the DOM at all
+Commonly combined with conditions based on props or state
+Ensures the DOM only contains elements that are actually meant to be shown
+
+Implementing conditional rendering in React applications
+
+The Greeting component checked props.isLoggedIn to decide which child component to show
+If true, it rendered <UserGreeting />; otherwise, <GuestGreeting />
+The parent App component tracked isLoggedIn in state and passed it down as a prop
+Clicking Login/Logout updated state, which triggered a re-render with different output
+Demonstrates how state changes drive what conditional UI gets displayed

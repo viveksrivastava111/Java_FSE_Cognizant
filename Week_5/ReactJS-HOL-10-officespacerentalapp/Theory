@@ -1,0 +1,57 @@
+HOL-10: JSX and Inline CSS
+
+Define JSX
+
+JSX stands for JavaScript XML — a syntax extension that lets you write HTML-like code in JavaScript
+It is not valid JavaScript by itself; it gets compiled into React.createElement() calls
+Makes UI code easier to read and write compared to plain JavaScript object structures
+Allows embedding JavaScript expressions directly inside markup using { }
+Is the standard way of writing UI structure in React applications
+
+ECMA Script
+
+ECMAScript is the official standard that JavaScript is based on
+ES6 (ECMAScript 2015) was a major version that introduced many modern JS features
+React and JSX rely heavily on ES6+ features like arrow functions, classes, and modules
+Newer versions continue to add features like optional chaining and nullish coalescing
+Understanding ECMAScript versions helps explain what syntax is available in a given environment
+
+React.createElement()
+
+The underlying function JSX is converted into during compilation
+Takes three main arguments: the element type, its props, and its children
+Returns a plain JavaScript object describing the UI, not actual DOM elements
+Developers rarely write this directly, since JSX is much easier to read
+Understanding it helps clarify that JSX is just syntactic sugar over regular function calls
+
+Creating React nodes with JSX
+
+Elements are created by writing tags like <h1>Title</h1> directly in JS files
+Attributes are passed similarly to HTML, e.g., <img src={...} />
+JSX expressions must return a single parent element (or a Fragment)
+JavaScript expressions can be embedded using curly braces inside JSX
+The Babel compiler transforms JSX into React.createElement() calls behind the scenes
+
+Rendering JSX to DOM
+
+The compiled JSX ultimately becomes real DOM elements shown in the browser
+ReactDOM.createRoot() and .render() are used to mount the top-level component
+React efficiently updates only the parts of the DOM that actually changed
+This process relies on the Virtual DOM comparing old and new UI structures
+Ensures fast, predictable updates to what the user sees on screen
+
+JavaScript expressions in JSX
+
+Any valid JS expression can be placed inside { } within JSX
+This includes variables, function calls, ternary operators, and array methods like .map()
+Cannot include full statements like if blocks directly inside JSX (must extract logic outside)
+Used here to display office details like {office.name} and {office.rent}
+Makes JSX dynamic rather than just static markup
+
+Using inline CSS in JSX
+
+Inline styles are applied via the style attribute, using a JavaScript object
+Property names use camelCase instead of regular CSS naming (e.g., backgroundColor)
+Values are often strings, and numeric values default to pixels for many properties
+Useful for dynamic styling based on conditions, like the rent color logic in this lab
+Different from className, which references predefined CSS classes instead

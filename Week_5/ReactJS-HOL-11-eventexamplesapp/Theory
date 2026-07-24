@@ -1,0 +1,33 @@
+HOL-11: React Events
+
+React events
+
+React uses its own event system built on top of native browser events
+Event handlers are passed as functions to JSX attributes like onClick
+React normalizes events across different browsers for consistent behavior
+Events in React are attached using camelCase names (onClick, not onclick)
+Handlers are written as JavaScript functions, not strings, unlike traditional HTML
+
+Event handlers
+
+Functions that run in response to a specific event, like a button click
+Can be defined as class methods or inline arrow functions within JSX
+Often need to be bound to the component instance in class components (this binding)
+Can accept and use the event object passed by React automatically
+Used here to handle increment, decrement, welcome message, and click actions
+
+Synthetic event
+
+React wraps native browser events into a cross-browser wrapper called a SyntheticEvent
+Ensures consistent event behavior regardless of which browser is being used
+Has the same interface as native events, including methods like preventDefault()
+Automatically passed as the first argument to event handler functions
+Was used in this lab's "Click on me" button to demonstrate onClick handling
+
+React event naming convention
+
+Event names in JSX use camelCase, such as onClick, onChange, onSubmit
+This differs from plain HTML, which uses all-lowercase event attributes
+Handlers are passed as actual function references inside curly braces, not strings
+Consistent naming makes it easy to recognize and predict event handler names
+Following this convention is required for React to correctly attach the event listeners
