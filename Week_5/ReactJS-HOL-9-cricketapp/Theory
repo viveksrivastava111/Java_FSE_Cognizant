@@ -1,0 +1,89 @@
+HOL-9: ES6 Features (cricketapp)
+
+Features of ES6
+
+ES6 (ECMAScript 2015) introduced major upgrades to JavaScript syntax and capabilities
+Key features include let/const, arrow functions, classes, destructuring, and the spread/rest operators
+Made JavaScript code shorter, more readable, and closer to other modern languages
+Forms the foundation of how modern React code is written
+Widely supported in all modern browsers and required knowledge for React development
+
+JavaScript let
+
+let declares a variable with block scope, unlike var which is function-scoped
+Variables declared with let cannot be redeclared in the same scope
+Its value can still be reassigned after declaration
+Introduced to fix confusing scoping issues that existed with var
+Commonly used for variables expected to change, like loop counters or state values
+
+Differences between var and let
+
+var is function-scoped; let is block-scoped (limited to the nearest { })
+var allows redeclaration in the same scope; let does not
+var is hoisted and initialized as undefined; let is hoisted but not initialized (temporal dead zone)
+var can lead to bugs in loops due to shared scope; let avoids this by creating a new binding each iteration
+let is generally the safer, more modern choice for variable declarations
+
+JavaScript const
+
+const declares a variable that cannot be reassigned after its initial value
+Like let, it is block-scoped
+For objects and arrays declared with const, the reference cannot change, but contents can still be modified
+Used for values that should remain constant throughout the program, like configuration or fixed arrays
+Helps prevent accidental reassignment bugs in code
+
+ES6 class fundamentals
+
+Classes provide a cleaner syntax for creating objects and defining their behavior
+Declared using the class keyword, with a constructor() method to initialize properties
+Methods are defined directly inside the class body, without the function keyword
+Classes are mainly syntactic sugar over JavaScript's existing prototype-based inheritance
+Used in React class components to define state, lifecycle methods, and render logic
+
+ES6 class inheritance
+
+One class can inherit from another using the extends keyword
+The child class can call the parent constructor using super()
+Inherited classes gain access to the parent class's methods and properties
+Commonly seen in React as class MyComponent extends React.Component
+Enables code reuse and a clear hierarchy between related classes
+
+ES6 arrow functions
+
+A shorter syntax for writing functions, using => instead of the function keyword
+Automatically binds this from the surrounding context, avoiding common this-binding issues
+Ideal for short callback functions, like those used inside .map() or .filter()
+Can omit { } and return for single-expression functions
+Widely used throughout modern React code for filtering, mapping, and event handlers
+
+set(), map()
+
+map() is an array method that transforms each element and returns a new array
+Extremely common in React for rendering lists of components from array data
+Set is a built-in object that stores only unique values, with no duplicates
+Set can be used to remove duplicate entries from an array easily
+Both are ES6 features that simplify common data-handling tasks in JavaScript
+
+Using map() method of ES6
+
+.map() was used to loop through the players array and render each one as a list item
+Each iteration returns a JSX element based on the current array item
+The result is a new array of JSX elements that React can render directly
+Requires a key prop on each item to help React track list changes efficiently
+Central to how React handles displaying lists of dynamic data
+
+Applying arrow functions of ES6
+
+Arrow functions were used inside .filter() to select players scoring below 70
+Their concise syntax made the filtering logic easy to read in a single line
+No manual this binding was needed since arrow functions inherit it automatically
+Commonly paired with array methods like .map(), .filter(), and .reduce()
+Reduced the amount of boilerplate code compared to traditional function syntax
+
+Implementing Destructuring features of ES6
+
+Destructuring lets you unpack values from arrays or objects into separate variables
+Used here to split the 11-player array into individual named variables
+Skipped elements in an array can be ignored using extra commas (e.g., [first, , third])
+Also used with the spread operator (...) to merge two arrays into one
+Makes working with structured data shorter and more expressive than manual indexing

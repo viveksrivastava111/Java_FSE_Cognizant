@@ -1,0 +1,41 @@
+HOL-4: Component Life Cycle
+
+Need and benefits of component life cycle
+
+Life cycle refers to the stages a component goes through: mounting, updating, and unmounting
+It lets developers run code at specific moments, like right after a component appears
+Useful for tasks like fetching data, setting up subscriptions, or cleanup
+Helps avoid unnecessary work by controlling exactly when logic runs
+Without life cycle methods, it would be hard to control side effects properly
+
+Life cycle hook methods
+
+componentDidMount(): runs once, right after the component is added to the DOM
+componentDidUpdate(): runs after the component re-renders due to state/props change
+componentWillUnmount(): runs just before the component is removed from the DOM
+componentDidCatch(): runs when an error occurs anywhere in the component tree below it
+Each hook serves a specific purpose in managing the component's behavior over time
+
+Sequence of steps in rendering a component
+
+Constructor runs first to initialize state
+render() is called to generate the JSX/UI
+The component is inserted into the actual DOM
+componentDidMount() fires right after the DOM insertion is complete
+Any future state/prop changes trigger render() again, followed by componentDidUpdate()
+
+componentDidMount() hook
+
+Called exactly once, immediately after the component first renders to the DOM
+The ideal place to make API calls or fetch external data
+Ensures the DOM already exists before manipulating it or triggering network requests
+In this hands-on, it was used to call loadPosts() to fetch blog posts
+Does not run again on subsequent updates, only on the initial mount
+
+componentDidCatch() hook
+
+Acts like a safety net for errors happening inside child components
+Takes two parameters: the error itself and info about where it occurred
+Prevents the entire app from crashing when a small part fails
+Used here to show an alert message when an error occurs while loading posts
+Only class components can implement this method; it has no Hook equivalent

@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.st2, .v1, .mystyle1 {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 40px;
+  border-right: 3px solid green;
+}
+
+.mystyle1 {
+  border-right: none;
+}

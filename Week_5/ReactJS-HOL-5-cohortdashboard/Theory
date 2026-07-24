@@ -1,0 +1,33 @@
+HOL-5: Styling with CSS Modules and Inline Styles
+
+Need for styling react components
+
+Styling makes components visually clear, organized, and easy to use
+Well-structured components with consistent styling improve user experience
+Different projects need different styling approaches depending on scale and reusability needs
+Proper styling avoids messy, hard-to-maintain CSS across large applications
+React supports several styling methods, each suited to different situations
+
+CSS Modules
+
+A CSS Module is a .module.css file where class names are scoped locally to the component
+Prevents class name collisions between different components in the same app
+Imported into a component using import styles from './File.module.css'
+Applied using className={styles.className} syntax
+Keeps styling modular, reusable, and conflict-free across a large codebase
+
+Inline styles
+
+Inline styles are written directly in JSX using the style attribute
+The value must be a JavaScript object, with camelCase property names (e.g., backgroundColor)
+Useful for dynamic styles that depend on data, like changing text color based on status
+Do not require a separate CSS file, but are less reusable than CSS Modules
+In this hands-on, inline styles were used to change <h3> color based on cohort status
+
+Applying styles using className and style properties
+
+className links JSX elements to CSS classes defined in a stylesheet or CSS Module
+style applies styles directly as an object, calculated at runtime if needed
+Both can be used together in the same component for different purposes
+className is best for static, reusable styles; style is best for dynamic, conditional styles
+This hands-on combined both: className for the card layout, style for conditional heading color

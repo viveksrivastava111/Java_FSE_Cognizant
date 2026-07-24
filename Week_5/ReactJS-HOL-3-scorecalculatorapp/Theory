@@ -1,0 +1,25 @@
+HOL-3: Function Components and Styling
+
+Function components (recap and expansion)
+
+Declared as regular JavaScript functions that return JSX
+Receive data through a single props parameter
+Simpler syntax than class components, with no this keyword needed
+Ideal for components that mainly display data (like CalculateScore)
+Can use Hooks (like useState) to manage state if needed
+
+Applying styles to components
+
+CSS can be written in a separate .css file and imported into a component
+Styles are applied using the className attribute in JSX (not class)
+Keeping styles in a separate file (like mystyle.css) keeps components clean and readable
+Class names in CSS map directly to className values used in JSX
+This approach is called external stylesheet styling, as opposed to inline styles
+
+Rendering a component with calculated values
+
+Function components can perform calculations before returning JSX
+Values like average = (total/goal) * 100 can be computed inside the function body
+The calculated result is inserted into JSX using curly braces { }
+This demonstrates how JavaScript logic and UI rendering combine in React
+Each time props change, the component re-runs its calculation and re-renders

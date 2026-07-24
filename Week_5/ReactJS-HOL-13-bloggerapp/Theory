@@ -1,0 +1,49 @@
+HOL-13: Conditional Rendering (Part 2), Lists and Keys
+
+Various ways of conditional rendering
+
+If/else statements assigning JSX to a variable before returning it
+Ternary operators for compact inline conditions (condition ? A : B)
+Logical && operator for showing something only when a condition is true
+Returning null to render nothing at all under certain conditions
+Multiple methods can be combined within a single component tree, as done in this lab
+
+Rendering multiple components
+
+Several independent components (Book, Blog, Course Details) can be rendered together in one parent
+Each component manages its own internal data and rendering logic
+The parent component simply arranges and displays each child component
+Encourages splitting an app into small, focused, independently testable pieces
+Multiple components rendering together is a normal and expected pattern in React apps
+
+List component
+
+A component whose job is to render a collection of items, usually via .map()
+Takes an array (often through props) and returns a list of JSX elements
+Keeps list-rendering logic separate from the rest of the UI
+Was used here for Book Details, Blog Details, and Course Details, each rendering their own array
+Improves reusability, since the same list component can render different data sets
+
+Keys in React applications
+
+Keys are special string/number attributes React uses to identify list items uniquely
+Help React efficiently determine which items changed, were added, or were removed
+Should be stable and unique among siblings, like an id field from the data
+Missing or incorrect keys can lead to rendering bugs or performance issues
+Are not passed down as props to the component itself; they're used internally by React
+
+Extracting components with keys
+
+When rendering a list, it's common to extract each item into its own component
+The key prop must be placed on the outer element inside .map(), not inside the extracted component
+Keeps the list-building understandable, especially as list items become more complex
+Keys only need to be unique among siblings in the same array, not globally
+Applied here to Book, Blog, and Course items, each keyed by their respective id
+
+React Map, map() function
+
+.map() transforms each element of an array based on a provided function
+Returns a brand-new array without mutating the original
+The standard technique in React for turning data arrays into arrays of JSX elements
+Was used across all three components in this lab (books, blogs, courses) to generate list items
+Essential for any dynamic, data-driven list rendering in React

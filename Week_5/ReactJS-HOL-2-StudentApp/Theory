@@ -1,0 +1,41 @@
+HOL-2: React Components
+
+React components vs JavaScript functions
+
+A component is a function (or class) that returns UI, described using JSX
+A plain JS function returns any value; a component specifically returns renderable elements
+Components can hold their own state and lifecycle; plain functions cannot
+Components are invoked using JSX tags like <Home />, not function-call syntax
+React treats components as reusable, composable building blocks of the UI
+
+Types of components
+
+Class components: ES6 classes that extend React.Component
+Function components: plain JavaScript functions that return JSX
+Function components are simpler and are now the preferred, modern approach
+Class components support lifecycle methods natively; function components use Hooks for the same
+Both types can accept props and render output
+
+Class components
+
+Defined using the class keyword and extending React.Component
+Must implement a render() method that returns JSX
+Can hold internal state using this.state
+Access props via this.props
+Commonly used before Hooks were introduced in React 16.8
+
+Component constructor
+
+The constructor is a special method called when a class component is created
+Used to initialize state and bind event handler methods
+Must call super(props) first to properly set up the component
+Runs only once, when the component is first instantiated
+Not required if the component has no state or bindings to set up
+
+render() function
+
+Every class component must define a render() method
+It returns the JSX that describes what should appear on the screen
+React calls render() whenever the component needs to update the UI
+The returned JSX must have a single root element (or fragment)
+It should be a pure function — no side effects, just return UI based on current props/state
