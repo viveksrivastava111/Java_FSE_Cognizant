@@ -1,0 +1,36 @@
+Explain how to clean up and push back to remote Git
+
+After finishing local work, especially something involving branches and merges, it's good practice to confirm everything is in order before considering the work done
+"Clean up" refers to checking your local repository's state, no leftover uncommitted changes, no unnecessary branches still hanging around
+"Push back to remote" means making sure every commit you've made locally has actually been uploaded to GitLab, not just sitting on your own machine
+This final step matters because local commits alone don't help teammates, only pushed commits are visible to anyone else using the same remote repository
+
+Verify master is in a clean state
+
+git status confirms there are no uncommitted or staged-but-uncommitted changes left behind
+A clean state means "nothing to commit, working tree clean," exactly what you want before finishing up
+Checking this before pushing avoids accidentally leaving work half-done or forgotten
+This is a good final checkpoint after any multi-step exercise involving several commits
+
+List out all the available branches
+
+git branch -a shows every branch, both local and remote-tracking
+This confirms which branches still exist after any cleanup from previous exercises, like a deleted feature branch
+It's a good way to visually confirm the repository's current branch structure matches what you expect
+Seeing only main (and its remote counterpart) indicates all feature branches have been properly cleaned up already
+
+Pull the remote git repository to the master
+
+git pull fetches any changes from the remote repository and merges them into your current local branch
+This matters if the remote has commits your local copy doesn't have yet, for example changes made through GitLab's web interface
+Pulling before pushing is generally good practice, it avoids conflicts caused by pushing to a remote that has since moved ahead
+If there's nothing new on the remote, git pull simply reports "Already up to date"
+
+Push the pending changes to the remote repository
+
+git push uploads any local commits that haven't yet been sent to the remote
+If a previous step already pushed everything, this may report "Everything up-to-date," which is a success, not an error
+This step is what actually makes your local work visible and accessible to anyone else with access to the GitLab project
+Regularly pushing after committing keeps your remote repository in sync with your local progress, rather than falling behind
+
+Observe if changes are reflected in the remote repository

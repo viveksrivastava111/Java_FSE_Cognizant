@@ -1,0 +1,27 @@
+Explain git ignore
+
+.gitignore is a special file that tells Git which files or folders to never track
+Anything listed inside it is automatically skipped by git status, git add, and git commit
+It's commonly used for log files, temporary files, or build outputs that don't belong in version history
+Without it, unwanted files would clutter every commit and every status check
+
+Explain how to ignore unwanted files using git ignore
+
+You create a file literally named .gitignore in your project's root folder
+Inside it, you write patterns describing what to ignore, one per line
+*.log ignores every file ending in .log, no matter its name
+log/ ignores the entire log folder and everything inside it
+
+Implement git ignore command to ignore unwanted files and folders
+
+First, the unwanted files/folders actually need to exist (the .log file and log folder)
+Then .gitignore is created or edited to list patterns matching those exact files/folders
+Once saved correctly, Git immediately stops seeing those files as "untracked changes"
+Only .gitignore itself needs to be added, committed, and pushed — not the ignored files
+
+Verify git status reflects ignored files correctly
+
+Running git status after setting up .gitignore is how you confirm it's actually working
+Ignored files won't appear anywhere in the status output, not even as "untracked"
+If a file still shows up, the pattern in .gitignore doesn't match it exactly, or the file was already tracked before .gitignore existed
+A clean git status (aside from .gitignore itself needing to be committed) is the proof this hands-on succeeded

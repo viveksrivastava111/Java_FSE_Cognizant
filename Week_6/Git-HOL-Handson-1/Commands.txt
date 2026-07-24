@@ -1,0 +1,84 @@
+
+git --version
+
+Checks whether Git is installed on your computer
+Shows you the exact version number if it is
+If Git isn't installed, this command shows an error instead
+It's usually the very first thing you run to confirm Git is ready to use
+
+git config --global user.name "Sparsh Srivastava"
+
+Tells Git your name, so it knows who is making changes
+The word "global" means this name applies to every project on this computer, not just one
+This name gets attached to every commit you make from now on
+You only need to run this once per computer, not every time
+
+git config --global user.email "sparshsrivastava10d@gmail.com"
+
+Tells Git your email address, similar to how the name command works
+This email also gets attached to every commit, alongside your name
+It helps identify you, especially on platforms like GitLab or GitHub
+Like the name command, you only set this once per computer
+
+git config --list
+
+Shows you every setting Git currently has saved
+Lets you double-check that your name and email were saved correctly
+Also shows other settings Git is using in the background, like security and line-ending options
+It's a way to verify your setup worked, rather than just assuming it did
+
+git config --global core.editor "notepad++.exe -multiInst -notabbar -nosession -noPlugin"
+
+Tells Git which program to open when it needs you to type something, like a commit message
+Sets Notepad++ as that program instead of Git's default basic editor
+The extra words after .exe are just settings that make Notepad++ open cleanly, without extra tabs or popups
+This is a one-time setup so future Git actions open a program you're comfortable using
+
+git config --global core.editor
+
+Simply asks Git "which editor did I set as default?"
+Shows you the answer, so you can confirm it was saved correctly
+Doesn't change anything, it's purely a check
+Useful right after setting the editor, to make sure it actually stuck
+
+cd cognizant-fse-git-practice
+
+Moves you inside a specific folder, in this case your project folder
+"cd" stands for "change directory," meaning "go to this folder"
+You need to be inside the correct project folder before running Git commands on it
+Without this step, Git commands would run in the wrong location
+
+echo "Second update to demo file" >> demo.txt
+
+Adds a new line of text into the file called demo.txt
+The >> symbol means "add this to the end," without deleting what's already there
+This is just a simple way to create a real change inside the file
+Git needs some actual change in a file before it has anything new to save
+
+git add demo.txt
+
+Tells Git "I want to include this file in my next save"
+This step is called "staging," it's like putting an item in a shopping cart before checkout
+The file isn't permanently saved yet, it's just marked as ready
+You must do this before you can commit the file
+
+git status
+
+Shows you the current state of your project folder
+Tells you which files are staged, changed, or untouched
+Helps you confirm exactly what will be saved before you actually save it
+It's a safe, read-only check, it doesn't change anything itself
+
+git commit -m "Updated demo.txt"
+
+Permanently saves the staged changes into your project's history
+The -m part lets you attach a short message explaining what you changed
+Think of a commit like a save point in a video game, you can always come back to it
+After this, the change exists in your local history, but not yet online
+
+git push origin main
+
+Uploads your saved commits from your computer to GitLab online
+"origin" means the online repository you originally cloned from
+"main" is the name of the branch (the specific version/timeline) you're uploading to
+After this step, your changes are visible to anyone with access to the GitLab project

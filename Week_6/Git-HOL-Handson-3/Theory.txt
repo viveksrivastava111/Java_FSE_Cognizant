@@ -1,0 +1,76 @@
+Explain branching and merging
+
+A branch is a separate, independent line of work that starts from the same point as your main code but can be changed without affecting it
+Branching lets you experiment, build a feature, or fix a bug in isolation, without breaking the main working version
+Merging is the process of taking the changes made in a branch and combining them back into another branch, usually the main one
+Together, branching and merging let multiple people (or one person working on multiple things) work in parallel without constantly stepping on each other's changes
+
+Explain about creating a branch request in GitLab
+
+In GitLab's web interface, you can create a new branch directly from a project's "Branches" page, without touching the command line at all
+This is functionally the same as running git branch locally, just done through a visual interface instead
+GitLab lets you choose which existing branch to start the new one from, usually main
+Creating branches this way is common when planning work through GitLab's issue-tracking features, tying a new branch directly to a specific task or ticket
+
+Explain about creating a merge request in GitLab
+
+A merge request (GitLab's term; other platforms call it a "pull request") is a formal request to bring one branch's changes into another
+It shows a summary of every file changed, added, or removed, so reviewers can see exactly what's being proposed before it's approved
+Team members can leave comments, request changes, or approve the merge request before it's actually merged
+Once approved, clicking "Merge" in GitLab performs the same action as running git merge locally, just with a review step built in beforehand
+
+Construct a branch, make changes, and merge with master/trunk
+
+git branch <name> creates a new branch, but doesn't switch you onto it yet, it just creates the pointer
+git checkout <name> actually switches your working directory onto that branch, so any changes you make now happen on it, not on main
+Changes made and committed while on a branch stay isolated to that branch until a merge brings them elsewhere
+git merge <branch> (run while on the branch you want to update, usually main) pulls in all the commits from the named branch
+
+List local and remote branches, understand the "*" marker
+
+git branch lists only local branches on your machine
+git branch -a lists both local branches and remote-tracking branches (ones that exist on GitLab but you may not have checked out locally)
+The * symbol appears next to whichever branch you're currently on, it's a quick visual way to confirm your current position
+Knowing your current branch matters constantly in Git, since almost every command acts relative to "wherever you currently are"
+
+Switch branches and check status
+
+git checkout <branch> moves you from one branch to another, updating your working files to match that branch's last commit
+Any uncommitted changes can sometimes block a checkout, Git will warn you if switching would overwrite work
+git status after switching confirms which branch you're on and whether there are uncommitted changes
+Checking status regularly avoids accidentally committing to the wrong branch
+
+List command-line differences between trunk and branch
+
+git diff <branch1> <branch2> shows exactly which lines changed between two branches, directly in the terminal
+Lines starting with + were added, lines starting with - were removed
+This is a fast, no-extra-tools way to review differences before merging
+It's especially useful for small changes where a full visual tool feels like overkill
+
+List visual differences using P4Merge
+
+P4Merge is a dedicated visual diff/merge tool that shows changes side by side, with color-coded highlighting
+It's often easier to read than plain command-line diffs, especially for larger or more complex changes
+Git can be configured to launch P4Merge automatically via git difftool, instead of manually opening the tool separately
+Visual diff tools become increasingly valuable as the number of changed files and lines grows
+
+Merge the source branch to the trunk
+
+Merging combines the commit history of the branch into the branch you're currently on
+If both branches changed different things, Git merges them automatically with no conflict
+If both branches changed the exact same lines, Git flags a "merge conflict" that needs manual resolution
+After a successful merge, the trunk (main) now contains every change that was made on the branch
+
+Observe the log after merging using git log --oneline --graph --decorate
+
+--oneline shows each commit as a single compact line instead of a full detailed block
+--graph draws a visual line structure showing how branches diverged and came back together
+--decorate labels each commit with which branch(es) and tags point to it
+Together, these three flags give a compact, readable picture of your project's entire branching history at a glance
+
+Delete the branch after merging and observe git status
+
+git branch -d <branch> deletes a branch, but only if its changes have already been safely merged elsewhere
+This prevents accidentally deleting a branch that still has unmerged work sitting on it
+Deleting a branch after merging is normal cleanup, it doesn't remove the commits themselves, since those now live on in the branch you merged into
+git status afterward confirms you're back on a single clean branch, with no signs of the deleted branch remaining

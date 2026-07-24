@@ -1,0 +1,118 @@
+Explain how to resolve the conflict during merge
+
+A merge conflict happens when the exact same lines of a file were changed differently on two branches being merged together
+Git can't automatically decide which version is "correct," so it pauses the merge and asks a human to choose
+The conflicting file gets special markers inserted directly into it, showing both versions side by side within the same file
+Resolving means editing the file to keep the correct content, removing the markers, then staging and committing the result to tell Git "this conflict is settled"
+
+Implement conflict resolution when multiple users update the trunk
+
+This scenario happens naturally in real teams: one person works on a branch while someone else changes the same file on main in the meantime
+Both changes are valid on their own, the conflict only exists because Git can't guess which one should "win"
+The fix is never automatic guessing, it always requires a person to look at both versions and decide the final content
+Once resolved and committed, the trunk moves forward with a single, agreed-upon version of the file
+
+Verify master is in a clean state
+
+git status before starting confirms there are no uncommitted changes hanging around that could interfere with the exercise
+Starting from a clean state means any conflict that happens later is caused only by the intentional changes in this lab, not leftover mess
+A "clean" status shows "nothing to commit, working tree clean"
+This is good practice before any branching or merging work, not just for this specific hands-on
+
+Create a branch, add a file, update it, and observe status
+
+Creating the file for the first time shows up in git status as an untracked file
+Editing that same file's content again (before committing) shows it as modified, not untracked, once it's been staged at least once
+git status at each stage is how you build a habit of always knowing exactly what Git currently sees as changed
+This step establishes the branch's own version of hello.xml, which will later conflict with master's version
+
+Commit the changes to reflect in the branch
+
+Committing on the branch permanently saves that version of hello.xml into the branch's own history
+This commit exists only on GitWork at this point, main knows nothing about it yet
+This separation is exactly why a conflict becomes possible later, two independent histories are diverging
+The commit message should describe what changed, for future reference when looking back at history
+
+Switch to master and add different content to the same file
+
+Switching back to main and creating hello.xml there, with different content, sets up the actual conflict
+Since main never had this file before (or had different content), this is a legitimate, valid change on its own
+The problem only appears once you try to merge these two independently-changed versions together
+This step exists specifically to simulate two people working on the same file without coordinating
+
+Commit the changes to the master
+
+Just like on the branch, this permanently records master's own version of hello.xml into its history
+Now both main and GitWork have committed, different versions of the exact same file
+Neither commit is "wrong," they're just incompatible with each other in their current form
+This is the exact condition that will cause git merge to report a conflict
+
+Observe the log with git log --oneline --graph --decorate --all
+
+Adding --all shows every branch's history at once, not just the one you're currently on
+This lets you visually see both main and GitWork diverging from a common point, each with their own separate commit
+It's a useful way to confirm, before merging, that the two branches really have gone in different directions
+This diverging shape is exactly what causes a true merge (not a simple fast-forward) to be needed
+
+Check differences with Git diff tool
+
+git diff branch1 branch2 shows the textual differences between the two versions of hello.xml directly in the terminal
+This gives you a preview of what's likely to conflict, before you actually attempt the merge
+Seeing the diff beforehand helps you understand what decision you'll need to make once the conflict appears
+It's a quick, no-extra-tool way to prepare for what's coming
+
+Use P4Merge for visual differences between master and branch
+
+P4Merge shows the two versions side-by-side with color highlighting, which can be easier to read than plain terminal diff output
+If diff.tool isn't configured, Git falls back to whatever default tool it can find (like vimdiff), which is why setting up the tool beforehand matters
+It's especially helpful once files get longer or more complex than a single line
+Using a visual tool is optional, the terminal git diff shows the same underlying information either way
+
+Merge the branch to the master and observe the git markup
+
+Running git merge here doesn't complete quietly, since both branches changed the same lines of the same file
+Git pauses the merge and inserts special markers directly into the conflicted file, showing both versions
+<<<<<<< HEAD marks the start of your current branch's version, ======= separates the two, >>>>>>> branchname marks the end of the incoming branch's version
+If Git treats the file as binary rather than text, it may skip inline markers entirely and just report an "add/add" conflict, requiring the file to be rewritten manually instead
+
+Use a 3-way merge tool to resolve the conflict
+
+A 3-way merge tool typically shows three versions at once: your version, their version, and the common ancestor they both started from
+This extra context makes it easier to understand exactly what changed on each side, rather than just seeing two competing versions
+You can pick one side, combine both, or write something entirely new, the tool just helps you see the differences clearly
+Once you save your resolution in the tool (or manually rewrite the file), the conflict is considered addressed
+
+Commit the changes once done with conflict resolution
+
+After resolving the conflict content-wise, the file still needs to be staged with git add, just like any other change
+Committing afterward tells Git "this conflict is now settled, here's the final agreed version"
+This commit is special in that it has two parents (one from each branch being merged), marking the point where the two histories rejoin
+Only after this commit is the merge actually considered complete
+
+Observe git status and add backup file to .gitignore
+
+Some merge tools leave behind backup files, often ending in .orig, as a safety copy of the pre-merge state
+These backup files show up as untracked clutter in git status after resolving a conflict
+Adding a pattern like *.orig to .gitignore stops these backup files from being accidentally committed in the future
+This reflects real-world practice, cleaning up tool-generated clutter is a normal part of the conflict-resolution workflow
+
+List all available branches
+
+git branch (or git branch -a for remotes too) shows every branch that currently exists
+After a merge, this confirms that both the merged-from branch and the destination branch are still visible, until you explicitly delete one
+This is a good habit before deleting anything, to make sure you're deleting the correct branch name
+It also helps confirm the merge itself didn't accidentally create or rename branches unexpectedly
+
+Delete the branch that merged into master
+
+Once GitWork's changes are safely part of main's history, the branch itself is no longer needed
+git branch -d specifically refuses to delete a branch with unmerged changes, protecting you from accidentally losing work
+Deleting the branch doesn't delete the commits, they remain part of main's permanent history
+This is standard cleanup after any feature branch has served its purpose and been merged
+
+Observe the log after deleting the branch
+
+Running git log --oneline --graph --decorate again (without --all) shows the current, cleaned-up state
+The graph clearly shows where two lines of history diverged and rejoined, this is the visible signature of a true merge rather than a fast-forward
+Even though GitWork no longer exists as a branch, its commits remain visible in main's history forever
+This final log is a good way to visually confirm the entire branch-conflict-merge cycle completed successfully
